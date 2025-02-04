@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotebookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +24,14 @@ Route::get('/home', function () {
     return view('home');
 });
 
+//laravel breeze
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/notes', function () {
+    return view('notes');
+})->middleware(['auth', 'verified'])->name('notes');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,3 +40,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::resource('user',NoteController::class)->middleware('auth');
+Route::resource('notebooks',NotebookController::class)->middleware('auth');
