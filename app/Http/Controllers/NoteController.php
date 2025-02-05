@@ -14,9 +14,13 @@ class NoteController extends Controller
     public function index()
     {
         $user_id=Auth::id();
-        $notes = Note::where('user_id',$user_id)->get(); // Fetch all notes
-        dd($notes);
-        return response()->json($notes); // Return as JSON
+        $notes = Note::where('user_id',$user_id)->latest('updated_at')->get(); // Fetch all notes
+        return view('notes.index')->with('notes', $notes);//with(); to access notes
+        //dd($notes);//->it prevent and dumps the data and also it stops the view from execution
+        //$notes->each(function($note)   {
+          //  dump($note->title);
+        //});
+        
     }
 
     /**
