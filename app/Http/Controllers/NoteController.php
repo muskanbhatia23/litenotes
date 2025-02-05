@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {
@@ -12,7 +13,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::all(); // Fetch all notes
+        $user_id=Auth::id();
+        $notes = Note::where('user_id',$user_id)->get(); // Fetch all notes
+        dd($notes);
         return response()->json($notes); // Return as JSON
     }
 
