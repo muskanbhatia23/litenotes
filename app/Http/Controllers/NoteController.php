@@ -38,12 +38,12 @@ class NoteController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'text' => 'required|string',
         ]);
 
         $note = Note::create([
             'title' => $request->title,
-            'content' => $request->content,
+            'text' => $request->text,
         ]);
         return redirect()->route('notes.index')->with('success', 'Note saved successfully!');
     }

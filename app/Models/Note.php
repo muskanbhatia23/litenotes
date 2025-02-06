@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
+
+    //protected $fillable-- is for which we can fill securely
+    //protected $guarded=[]; -- is for which fiels to be guard
+    protected $guarded=[];
 }
