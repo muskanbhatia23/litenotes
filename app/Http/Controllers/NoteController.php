@@ -28,7 +28,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        // Not needed for API-based CRUD
+        return view('notes.create'); // Not needed for API-based CRUD
     }
 
     /**
@@ -45,8 +45,7 @@ class NoteController extends Controller
             'title' => $request->title,
             'content' => $request->content,
         ]);
-
-        return response()->json(['message' => 'Note created successfully!', 'note' => $note], 201);
+        return redirect()->route('notes.index')->with('success', 'Note saved successfully!');
     }
 
     /**
