@@ -13,6 +13,7 @@
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
                      <h1 class="font-bold text-2xl text-red-600">{{$note->title}}</h1>
                      <p class="mt-2 text-black">{{$note->text}} </p>  
+                     <span>{{$note->updated_at->diffForHumans() }}</span>
                   </div>
                 
             @endforeach
