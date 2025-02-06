@@ -53,7 +53,12 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        return response()->json($note);
+        if($note->user_id!== Auth::id())
+        {
+            abort(403);
+        }
+
+        return view('notes.show', ['note'=>$note]);
     }
 
     /**
