@@ -8,6 +8,10 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            {{--for new note add on--}}
+            <x-link-button href="{{route('notes.create')}}"> {{--it created route for create --no error of not found!--}}
+                + New Note
+            </x-link-button>
             {{--first note--}}
        {{-- @foreach ($notes as $note)--}}
             @forelse ($notes as $note){{--when notes are empty then we use forelse--}}

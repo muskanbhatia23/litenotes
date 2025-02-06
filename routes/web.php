@@ -25,9 +25,9 @@ Route::get('/', function () {
 });
 
 //laravel breeze
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {---after replacing dashboard with nots this page has been deleted
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::get('/notes', function () {
     return view('notes.index');
