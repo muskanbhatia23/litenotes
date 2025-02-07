@@ -21,7 +21,7 @@
                             {{$note->title}}
                         </a>
                         </h1>
-                     <p class="mt-2 text-black">{{Str::limit($note->text,200,'...')}} </p>  {{--for setting the limit of chars to show on the screen--}}
+                     <p class="mt-2 text-black">{{Str::limit($note->content,200,'...')}} </p>  {{--for setting the limit of chars to show on the screen--}}
                      <span class="block mt-4 text-sm opacity-70">{{$note->updated_at->diffForHumans() }}</span>
                   </div>
              @empty{{--@empty director is for ---if notes are empty--}} 

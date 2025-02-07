@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class NoteController extends Controller
 {
@@ -42,8 +43,10 @@ class NoteController extends Controller
         ]);
 
         $note = Note::create([
+            'user_id'=>Auth::id(),
+            'uuid'=> Str::uuid(),
             'title' => $request->title,
-            'text' => $request->text,
+            'content' => $request->text,
         ]);
         return redirect()->route('notes.index')->with('success', 'Note saved successfully!');
     }

@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->string('title');
             $table->longText('content');
             $table->foreignIdFor(User::class);

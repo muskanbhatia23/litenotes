@@ -18,10 +18,11 @@
                             {{$note->title}}
                         
                         </h1>
-                     <p class="mt-4 text-black whitespace-pre-wrap">{{$note->text}} </p>  
+                     <p class="mt-4 text-black whitespace-pre-wrap">
+                        {{$note->content}}
+                     </p>  
                   </div> 
             
         </div>
-
     </div>
 </x-app-layout>
