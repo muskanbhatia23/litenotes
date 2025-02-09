@@ -27,6 +27,7 @@
              @empty{{--@empty director is for ---if notes are empty--}} 
              <p>You have no notes yet</p>  
             @endforelse
+        
             {{$notes->links()}}
         </div>
 

@@ -15,7 +15,7 @@ class NoteController extends Controller
     public function index()
     {
         $user_id=Auth::id();
-        $notes = Note::where('user_id',$user_id)->latest('updated_at')->paginate(5); // Fetch all notes
+        $notes = Note::where('user_id',$user_id)->latest('updated_at')->paginate(10); // Fetch all notes
         return view('notes.index')->with('notes', $notes);//with(); to access notes
         //dd($notes);//->it prevent and dumps the data and also it stops the view from execution
         //$notes->each(function($note)   {
@@ -39,14 +39,14 @@ class NoteController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'text' => 'required|string',
+            'content' => 'required|string',
         ]);
 
         $note = Note::create([
             'user_id'=>Auth::id(),
             'uuid'=> Str::uuid(),
             'title' => $request->title,
-            'content' => $request->text,
+            'content' => $request->content,
         ]);
         return redirect()->route('notes.index')->with('success', 'Note saved successfully!');
     }
@@ -70,6 +70,12 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
         // Not needed for API-based CRUD
+        if($note->user_id!== Auth::id())
+        {
+            abort(403);
+        }
+
+        return view('notes.edit', ['note'=>$note]);
     }
 
     /**
@@ -77,22 +83,35 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
+          if($note->user_id!== Auth::id())
+          {
+              abort(403);
+          }
         $request->validate([
-            'title' => 'sometimes|string|max:255',
-            'content' => 'sometimes|string',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
-        $note->update($request->all());
+        $note->update([
+            'title'=>$request->title,
+            'content'=>$request->content
+        ]);
 
-        return response()->json(['message' => 'Note updated successfully!', 'note' => $note]);
+       // return to_route('notes.show',$note)->json(['message' => 'Note updated successfully!', 'note' => $note]);
+       return redirect()->route('notes.show',$note)->with('success', 'Note updated successfully!');
+   
     }
 
     /**
      * Remove the specified note from storage.
      */
     public function destroy(Note $note)
-    {
+    {  if($note->user_id!== Auth::id())
+        {
+            abort(403);
+        }
         $note->delete();
-        return response()->json(['message' => 'Note deleted successfully!']);
+        return redirect()->route('notes.index',$note)->with('success', 'Note updated successfully!');
+   
     }
 }

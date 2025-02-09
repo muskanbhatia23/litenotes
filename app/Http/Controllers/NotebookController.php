@@ -42,13 +42,13 @@ class NotebookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'text' => 'required|string',
+            'name' => 'required',
+           
         ]);
 
-        $note = Notebook::create([
+        $notebook = Notebook::create([
             'user_id'=>Auth::id(),
-            'name' => $request->title,
+            'name' => $request->name,
             
         ]);
         return redirect()->route('notebooks.index')->with('success', 'Note saved successfully!');
