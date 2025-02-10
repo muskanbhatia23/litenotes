@@ -22,7 +22,7 @@
             @csrf
 
             <x-primary-button href="{{route('notes.edit', $note)}}" class="ml-auto bg-red-500 hover:bg-red-600" 
-            onclick=" return confirm('Are you sure you want to delete this note')">Delete Note </x-primary-button>
+            onclick=" return confirm('Move to trash?')">Move to Trash </x-primary-button>
     </div>
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
                      <h1 class="font-bold text-3xl text-center text-red-600">

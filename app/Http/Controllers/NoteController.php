@@ -131,6 +131,6 @@ class NoteController extends Controller
             abort(403);
         }
         $note->delete();
-        return redirect()->route('notes.index', $note)->with('success', 'Note updated successfully!');
+        return redirect()->route('notes.index', $note)->with('success', 'Note moved to trash!');
     }
 }
