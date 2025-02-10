@@ -7,11 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
-        @if(session('success'))
-        <p class="mb-4 px-4 py-2 bg-green-100 border border-green-200 text-green-700 rounded-md">
-            {{session('success')}}
-        </p>
-        @endif
+       <x-alert-success> {{ session('success')}}</x-alert-success>
     
           
             <div class="flex gap-6 !important">

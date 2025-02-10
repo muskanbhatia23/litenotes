@@ -19,7 +19,7 @@ class NotebookController extends Controller
         //
         $user_id=Auth::id();
         $notebook = Notebook::where('user_id',$user_id)->latest('updated_at')->get(); // Fetch all notes
-        return view('notebooks.index')->with('notebooks', $notebook);
+        return view('notebooks.index')->with('notebook', $notebook);
     }
 
     /**

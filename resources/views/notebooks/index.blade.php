@@ -14,7 +14,7 @@
             </x-link-button>
             {{--first note--}}
        {{-- @foreach ($notes as $note)--}}
-            @forelse ($notebooks as $note){{--when notes are empty then we use forelse--}}
+            @forelse ($notebook as $note){{--when notes are empty then we use forelse--}}
             <div class="bg-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
                      <h1 class="font-bold text-lg text-red-600">
                        {{-- <a class="hover:underline" href="{{route('notes.show',$note)}}">--}}
