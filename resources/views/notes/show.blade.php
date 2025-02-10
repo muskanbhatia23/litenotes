@@ -8,7 +8,10 @@
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
        <x-alert-success> {{ session('success')}}</x-alert-success>
-    
+       
+       <span class="px-2 py-1 border border-indigo-400 bg-indigo-400 rounded font-semibold text-sm">
+        {{ $note->notebook->name}}
+       </span>
           
             <div class="flex gap-6 !important">
         <p class="opacity-70"><strong>Created: {{$note->created_at->diffForHumans()}}</strong></p>

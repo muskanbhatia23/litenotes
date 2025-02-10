@@ -47,14 +47,24 @@ class NoteController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
+  
+        $note = Auth::user()->notes()->create([
+        'uuid'=>Str::uuid(),
+        'title'=>$request->title,
+        'content' => $request->content,
+        'notebook_id' => $request->notebook_id ?? null
+        ]);
 
+
+        /* before defining of relationships
         $note = Note::create([
             'user_id' => Auth::id(),
             'uuid' => Str::uuid(),
             'title' => $request->title,
             'content' => $request->content,
             'notebook_id' => $request->notebook_id ?? null,
-        ]);
+        ]);*/
+
         return redirect()->route('notes.index')->with('success', 'Note saved successfully!');
     }
 
@@ -63,7 +73,8 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        if ($note->user_id !== Auth::id()) {
+        if(!$note->user->is(Auth::user())){ //if not the same user then abort
+       // if ($note->user_id !== Auth::id()) {
             abort(403);
         }
 
@@ -76,8 +87,8 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
         // Not needed for API-based CRUD
-        
-        if ($note->user_id !== Auth::id()) {
+        if(!$note->user->is(Auth::user())){ 
+        //if ($note->user_id !== Auth::id()) {
             abort(403);
         }
     
@@ -90,7 +101,8 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        if ($note->user_id !== Auth::id()) {
+        if(!$note->user->is(Auth::user())){ 
+        //if ($note->user_id !== Auth::id()) {
             abort(403);
         }
         $request->validate([
@@ -114,7 +126,8 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        if ($note->user_id !== Auth::id()) {
+        if(!$note->user->is(Auth::user())){ 
+        //if ($note->user_id !== Auth::id()) {
             abort(403);
         }
         $note->delete();
