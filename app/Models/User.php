@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //eloquent relationships --here user has many notes --after this need to make inverse action in note model for use this relationship 
+    public function notes(){
+    return $this->hasMany(Note::class);
+    }
 }

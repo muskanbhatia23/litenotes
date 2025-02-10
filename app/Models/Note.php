@@ -12,4 +12,8 @@ class Note extends Model
     //protected $fillable-- is for which we can fill securely
     //protected $guarded=[]; -- is for which fiels to be guard
     protected $guarded=[];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
